@@ -1,0 +1,5 @@
+1.  Установить ssh сервер        sudo apt-get install openssh-server
+2. Открытие справки для команды    ufw  sudo man ufw
+3. Включение службы ssh сервера  ssh ip-адрес
+4. Добавление порта 22 в исключения фаервола   sudo ufw allow 22
+5. Генерация ssh ключа   ssh-keygen
