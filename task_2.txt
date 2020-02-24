@@ -1,0 +1,27 @@
+Команда cat предназначена для просмотра, создания и объединения файлов.
+
+
+Создаём файлы:
+
+cat > file1.txt
+Hello Bash!
+
+cat > file2.txt
+Hello Python!
+
+
+Объединение двух файлов:
+
+cat file1.txt file2.txt > file3.txt
+
+
+Просмотр содержимого созданного файла:
+
+cat file3.txt
+
+
+Переименование файла:
+
+mv file3.txt newfile.txt
+
+
