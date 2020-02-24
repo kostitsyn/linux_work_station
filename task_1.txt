@@ -1,0 +1,8 @@
+Просмотр содержимого директорий:
+ls -la /etc/
+ls -la /proc/
+ls -la /home/
+
+Просмотр произвольных файлов в /etc:
+cat /etc/services
+cat /etc/subgid
