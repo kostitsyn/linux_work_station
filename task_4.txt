@@ -1,0 +1,24 @@
+Создаём нового пользователя в уже существующую группу:
+
+sudo useradd -g 1000 -s /bin/bash -m -c 'new user' new_user
+
+
+Заходим под админом и назначаем пароль пользователю new_user:
+
+sudo su
+passwd new_user
+
+
+Добавляем пользователя new_user список пользователей, кому доступны права администратора:
+
+echo "new_user ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/new_user
+
+
+Заходим под пользователем new_user:
+
+su - new_user
+
+
+Проверяем возможность входа под правами адимнистратора:
+
+sudo su

@@ -1,0 +1,31 @@
+5. Создаём новую группу developer:
+
+sudo groupadd developer --gid 5000
+
+
+Создаём несколько пользователей, входящих в эту группу:
+
+sudo useradd -g 5000 -s /bin/bash -m -c 'user developer 1' userdev1
+sudo useradd -g 5000 -s /bin/bash -m -c 'user developer 2' userdev2
+sudo useradd -g 5000 -s /bin/bash -m -c 'user developer 3' userdev3
+
+
+Создаём директорию для совместной работы пользователей и назначаем для нее атрибут SGID, а также добавляем права на запись всей группой:
+
+sudo mkdir /opt/team_work
+sudo chmod 2770 /opt/team_work
+
+Назначаем директории team_work владельца - группу developer:
+
+sudo chgrp -R developer /opt/team_work
+
+
+
+6. Создаём поддиректорию обмена файлами:
+
+sudo mkdir /opt/team_work/exchange
+
+Переназначаем директории exchange вместо атрибута SGID параметр w для группы чтобы удалять файлы в директории могли только создатели:
+
+sudo chmod g+w /opt/team_work/exchange
+

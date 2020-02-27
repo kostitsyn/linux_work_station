@@ -1,0 +1,49 @@
+1. Создать file1 и наполнить его произвольным содержимым:
+
+cat > file1
+task_1 home_work_3
+
+
+Скопировать file1 в file2:
+
+cp file1 file2
+
+
+Создание символической ссылки file3 на file1:
+
+ln -s file1 file3
+
+
+Создание жёсткой ссылки file4 на file1:
+
+ln file1 file4
+
+
+У file1 и file4 айноды одинаковые, поскольку file4 это жёсткая ссылка на file1.
+
+
+Удалить file1:
+
+rm file1
+
+
+Скопированный file2 и жесткая ссылка file4 открываются и доступны, а символичная ссылка file3 стала недоступна.
+
+
+
+2. Даём созданным файлам другие произвольные имена:
+
+mv file2 copyfile
+mv file3 symbolicfile
+mv file4 hardfile
+
+
+Создаём новую символическую ссылку на copyfile:
+
+ln -s copyfile symbolicopyfile
+
+
+Перемещение ссылки в другую директорию:
+
+mv symbolicopyfile ~/Videos/
+
