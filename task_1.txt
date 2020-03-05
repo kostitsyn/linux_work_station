@@ -1,0 +1,7 @@
+#!/bin/bash
+echo Create file1.txt and write some strings in this file. The strings are must be  empty or with words. Then check  file1.txt or look down.
+for i in file1.txt
+do
+  cat $i | tr '[:lower:]'  '[:upper:]' | tr -d "\n" >newfile
+  mv newfile $i
+done

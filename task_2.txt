@@ -1,0 +1,9 @@
+#!/bin/bash
+echo Fail ssh:
+tail /var/log/auth.log | grep sshd
+echo
+echo Fail terminal:
+tail /var/log/auth.log | grep gdm-password
+echo
+echo Fail terminal \(gui\):
+tail /var/log/auth.log | grep su
