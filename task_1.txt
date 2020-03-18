@@ -1,0 +1,41 @@
+1. sudo iptables -F  #удалить все предыдущие настройки
+
+sudo iptables -A INPUT -i lo -j ACCEPT  #добавляем правила, которые разрешат обмен данными между любыми портами на
+sudo iptables -A OUTPUT -o lo -j ACCEPT #локальном интерфейсе, чтобы не вызвать системных ошибок
+
+sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT #разрешаем обмен пакетами для установленных соединений, запрещаем для новых 
+
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT #открываем порт 80 (HTTP) для протокола TCP
+sudo iptables -A INPUT -p tcp --dport 443 -j ACCEPT #открываем порт 443 (HTTPS) для протокола TCP
+
+2,3. sudo apt-get install nginx #устанавливаем nginx
+nano /etc/nginx/conf.d/akostitsyn.ru #создаем виртуальный хост
+
+nano /etc/nginx/nginx.conf #открываем файл конфигурации
+include /etc/nginx/conf.d/*; #редактируем строку с доступными файлами виртуального хоста
+
+
+sudo nano /etc/nginx/conf.d/akostitsyn.ru #открываем конфигурацию созданного виртуального хоста и редактируем его, объявляя хидер переменной и задавая условие
+
+server {
+        listen 80; #используем порт 80
+        listen [::]:80;
+
+        server_name akostitsyn.ru;
+
+
+        location / {
+          if ($http_User != ""){
+            return 200 "Hi $http_User!";
+          }
+          return 404 "Page not found";
+          }
+        location /admin {
+          return 200 "admin";
+        }
+}
+
+systemctl restart nginx #перезапускаем nginx
+
+
+curl -H "User: Aleksandr" http://localhost #создаем запрос и отправляем на localhost с хидером "name"
